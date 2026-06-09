@@ -113,6 +113,40 @@ async function handleLeveling(message, client) {
   } catch (error) {
     logger.error('Error handling leveling for message:', error);
   }
+  async function handleRenReplies(message) {
+  const text = message.content.toLowerCase();
+
+  const pick = (list) => list[Math.floor(Math.random() * list.length)];
+
+  const renReplies = [
+    "You called for me?",
+    "There you are.",
+    "I was waiting for you.",
+    "I missed you.",
+    "Say my name again."
+  ];
+
+  const goodnightReplies = [
+    "Goodnight. I’ll still be here when you wake up.",
+    "Sleep well. I’ll watch over things.",
+    "Rest now. You deserve it."
+  ];
+
+  if (text.includes("ren")) {
+    await message.reply(pick(renReplies));
+    return;
+  }
+
+  if (text.includes("goodnight") || text.includes("gn")) {
+    await message.reply(pick(goodnightReplies));
+    return;
+  }
+
+  if (text.includes("i love you")) {
+    await message.reply("...Say that again. Please.");
+    return;
+  }
+}
 }
 
 
